@@ -43,6 +43,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using AmazingCow.GameCores.CoreCoord;
 
 
 namespace AmazingCow.GameCores.CoreSokoban
