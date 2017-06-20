@@ -1,0 +1,3 @@
+[submodule "lib/CoreCoord"]
+	path = lib/CoreCoord
+	url = http://github.com/AmazingCow-Game-Core/CoreCoord_CS
