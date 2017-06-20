@@ -45,7 +45,7 @@ using System.Linq;
 using System.Diagnostics;
 
 
-namespace com.amazingcow.Sokoban
+namespace AmazingCow.GameCores.CoreSokoban
 {
     public class GameCore
     {
@@ -262,5 +262,5 @@ namespace com.amazingcow.Sokoban
 
 
      }//class GameCore
-}//namespace com.amazingcow.Sokoban
+}//namespace com.amazingcow.CoreSokoban
 
