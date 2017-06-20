@@ -77,9 +77,6 @@ namespace AmazingCow.GameCores.CoreSokoban
         public List<Coord> BoxOnGoalCoords { get; private set; }
         public List<Coord> FloorCoords     { get; private set; }
 
-        public int FieldHeight { get; private set; }
-        public int FieldWidth  { get; private set; }
-
         public int Moves  { get; private set; }
         public int Pushes { get; private set; }
 
@@ -193,9 +190,6 @@ namespace AmazingCow.GameCores.CoreSokoban
             BoxCoords       = new List<Coord>(_level.BoxCoords);
             BoxOnGoalCoords = new List<Coord>(_level.BoxOnGoalCoords);
             FloorCoords     = new List<Coord>(_level.FloorCoords);
-
-            FieldHeight = _level.Field.GetLength(0);
-            FieldWidth  = _level.Field.GetLength(1);
 
             Moves  = 0;
             Pushes = 0;
