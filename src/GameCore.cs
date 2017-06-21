@@ -50,6 +50,18 @@ namespace AmazingCow.GameCores.CoreSokoban
 {
     public class GameCore
     {
+
+        ////////////////////////////////////////////////////////////////////////
+        // Delegates                                                          //
+        ////////////////////////////////////////////////////////////////////////
+        public delegate void OnPlayerMoveDelegate(Coord current);
+        public delegate void OnBoxMoveDelegate(
+            Coord previous, 
+            Coord current, 
+            bool  onGoal
+        );
+
+
         ////////////////////////////////////////////////////////////////////////
         // Enums                                                              //
         ////////////////////////////////////////////////////////////////////////
@@ -89,6 +101,9 @@ namespace AmazingCow.GameCores.CoreSokoban
         }
 
         public string SnapshotString { get; private set; }
+
+        public OnPlayerMoveDelegate OnPlayerMoveCallback { get; set; }
+        public OnBoxMoveDelegate    OnBoxMoveCallback    { get; set; }
 
 
         ////////////////////////////////////////////////////////////////////////
@@ -137,6 +152,10 @@ namespace AmazingCow.GameCores.CoreSokoban
             ++Moves;
             PlayerCoord     = targetCoord;
             SnapshotString += Char.ToLower(direction.ToString()[0]);
+
+            //Inform Listeners.
+            if(OnPlayerMoveCallback != null)
+                OnPlayerMoveCallback(targetCoord);
 
             return MoveType.Valid;
         }
@@ -237,6 +256,21 @@ namespace AmazingCow.GameCores.CoreSokoban
             PlayerCoord     = originalCoord;
             SnapshotString += Char.ToUpper(direction.ToString()[0]);
 
+            //Inform Listeners.
+            if(OnPlayerMoveCallback != null)
+            {
+                OnPlayerMoveCallback(originalCoord);
+            }
+
+            if(OnBoxMoveCallback != null)
+            {
+                OnBoxMoveCallback(
+                    originalCoord, 
+                    targetCoord, 
+                    moveType == MoveType.BoxOnGoal
+                );
+            }
+
             return moveType;
         }
 
@@ -254,8 +288,6 @@ namespace AmazingCow.GameCores.CoreSokoban
                 }
             }
         }
-
-
      }//class GameCore
 }//namespace com.amazingcow.CoreSokoban
 
